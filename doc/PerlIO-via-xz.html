@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PerlIO::via::xz - PerlIO layer for XZ (de)compression</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:hmbrand@cpan.org" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#BUGS">BUGS</a></li>
+  <li><a href="#PREREQUISITES">PREREQUISITES</a></li>
+  <li><a href="#SEE-ALSO">SEE ALSO</a></li>
+  <li><a href="#AUTHOR">AUTHOR</a></li>
+  <li><a href="#COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>PerlIO::via::xz - PerlIO layer for XZ (de)compression</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code>    use PerlIO::via::XZ;
+
+    # Read a xz compressed file from disk.
+    open my $fh, &quot;&lt;:via(xz)&quot;, &quot;compressed_file&quot;;
+    my $uncompressed_data = &lt;$fh&gt;;
+
+    # Compress data on-the-fly to a xz compressed file on disk.
+    open my $fh, &quot;&gt;:via(xz)&quot;, &quot;compressed_file&quot;;
+    print { $fh } $uncompressed_data;</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This module implements a PerlIO layer which will let you handle xz compressed files transparently.</p>
+
+<h1 id="BUGS">BUGS</h1>
+
+<p>Setting <code>$/</code> to <code>undef</code> causes havoc. This is under investigation.</p>
+
+<p>Using <code>binmode</code> on an opened file for compression will pop (remove) the layer.</p>
+
+<h1 id="PREREQUISITES">PREREQUISITES</h1>
+
+<p>This module requires IO::Compress::Xz and IO::Uncompress::UnXz.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>PerlIO::via, IO::Compress::Xz, IO::Uncompress::UnXz.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>H.Merijn Brand &lt;hmbrand@cpan.org&gt;</p>
+
+<h1 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h1>
+
+<p>Copyright (C) 2020 by H.Merijn Brand</p>
+
+<p>This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.</p>
+
+
+</body>
+
+</html>
+
+

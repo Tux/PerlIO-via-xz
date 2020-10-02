@@ -1,0 +1,12 @@
+MANIFEST
+README
+ChangeLog
+CONTRIBUTING.md
+Makefile.PL
+cpanfile
+lib/PerlIO/via/xz.pm
+t/10-xz.t
+files/plain.txt
+files/banner.txt
+files/banner.xz
+files/plain.xz

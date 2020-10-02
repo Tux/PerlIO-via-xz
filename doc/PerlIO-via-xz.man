@@ -1,0 +1,46 @@
+STDIN(1)              User Contributed Perl Documentation             STDIN(1)
+
+
+
+[1mNAME[0m
+       PerlIO::via::xz - PerlIO layer for XZ (de)compression
+
+[1mSYNOPSIS[0m
+           use PerlIO::via::XZ;
+
+           # Read a xz compressed file from disk.
+           open my $fh, "<:via(xz)", "compressed_file";
+           my $uncompressed_data = <$fh>;
+
+           # Compress data on-the-fly to a xz compressed file on disk.
+           open my $fh, ">:via(xz)", "compressed_file";
+           print { $fh } $uncompressed_data;
+
+[1mDESCRIPTION[0m
+       This module implements a PerlIO layer which will let you handle xz
+       compressed files transparently.
+
+[1mBUGS[0m
+       Setting $/ to "undef" causes havoc. This is under investigation.
+
+       Using "binmode" on an opened file for compression will pop (remove) the
+       layer.
+
+[1mPREREQUISITES[0m
+       This module requires IO::Compress::Xz and IO::Uncompress::UnXz.
+
+[1mSEE ALSO[0m
+       PerlIO::via, IO::Compress::Xz, IO::Uncompress::UnXz.
+
+[1mAUTHOR[0m
+       H.Merijn Brand <hmbrand@cpan.org>
+
+[1mCOPYRIGHT AND LICENSE[0m
+       Copyright (C) 2020 by H.Merijn Brand
+
+       This library is free software; you can redistribute it and/or modify it
+       under the same terms as Perl itself.
+
+
+
+perl v5.32.0                      2020-10-02                          STDIN(1)

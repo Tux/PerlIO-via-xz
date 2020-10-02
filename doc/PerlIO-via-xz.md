@@ -1,0 +1,46 @@
+# NAME
+
+PerlIO::via::xz - PerlIO layer for XZ (de)compression
+
+# SYNOPSIS
+
+    use PerlIO::via::XZ;
+
+    # Read a xz compressed file from disk.
+    open my $fh, "<:via(xz)", "compressed_file";
+    my $uncompressed_data = <$fh>;
+
+    # Compress data on-the-fly to a xz compressed file on disk.
+    open my $fh, ">:via(xz)", "compressed_file";
+    print { $fh } $uncompressed_data;
+
+# DESCRIPTION
+
+This module implements a PerlIO layer which will let you handle
+xz compressed files transparently.
+
+# BUGS
+
+Setting `$/` to `undef` causes havoc. This is under investigation.
+
+Using `binmode` on an opened file for compression will pop (remove)
+the layer.
+
+# PREREQUISITES
+
+This module requires IO::Compress::Xz and IO::Uncompress::UnXz.
+
+# SEE ALSO
+
+PerlIO::via, IO::Compress::Xz, IO::Uncompress::UnXz.
+
+# AUTHOR
+
+H.Merijn Brand <hmbrand@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+Copyright (C) 2020 by H.Merijn Brand
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
