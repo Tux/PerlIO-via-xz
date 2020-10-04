@@ -10,11 +10,18 @@ use Test::More;
 use IO::Compress::Xz     qw( $XzError   );
 use IO::Uncompress::UnXz qw( $UnXzError );
 
-my $txt = "Lorem ipsum dolor sit amet\n";
+ok (my $txt = "Lorem ipsum dolor sit amet\n", "Set text");
 my $xz;
 
-foreach my $rs ("\xff\xfe\xff\xfe" x 16, undef) {
+for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
+     [ EMPTY  => ""				],
+     [ UNDEF  => undef				],
+     [ REF    => \40				],) {
+
+    my ($rst, $rs) = @$_;
     local $/ = $rs;
+
+    diag ("Testing for RS $rst");
 
     {   my $z = IO::Compress::Xz->new (\$xz) or die $XzError;
 	ok ($z->print ($txt), "print");
