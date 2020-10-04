@@ -18,7 +18,7 @@ for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
     my ($rst, $rs) = @$_;
     local $/ = $rs;
 
-    diag ("Testing for RS $rst");
+    ok (1, "Testing for RS $rst");
 
     {   my $z = IO::Compress::Xz->new (\$xz) or die $XzError;
 	ok ($z->print ($txt), "print");

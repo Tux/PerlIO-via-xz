@@ -50,7 +50,7 @@ for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
     local $/ = $rs;
     $rst eq "REF" and $txt{$_} = substr $txt{$_}, 0, 40 for qw( plain banner );
 
-    diag ("Testing for RS $rst");
+    ok (1, "Testing for RS $rst");
 
     # Decompression
     for my $type (qw( plain banner )) {
