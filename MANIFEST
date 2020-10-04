@@ -5,7 +5,8 @@ CONTRIBUTING.md
 Makefile.PL
 cpanfile
 lib/PerlIO/via/xz.pm
-t/10-xz.t
+t/10-base-xz.t
+t/10-via-xz.t
 files/plain.txt
 files/banner.txt
 files/banner.xz

@@ -1,10 +1,7 @@
 #!/pro/bin/perl
 
-use 5.14.2;
+use 5.12.0;
 use warnings;
-
-our $VERSION = "0.01 - 20201003";
-our $CMD = $0 =~ s{.*/}{}r;
 
 use Test::More;
 use IO::Compress::Xz     qw( $XzError   );
