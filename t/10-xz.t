@@ -41,37 +41,35 @@ ok ( close ($fh),					"close file");
 ok (!open  ($fh, "+>:via(xz)", $txz),			"write+read is impossible");
 ok (!open  ($fh, ">>:via(xz)", $txz),			"append is not supported");
 
-# Decompression
-for my $type (qw( plain banner )) {
-    local $/ = "\xff\xfe\xff\xfe" x 16;
+foreach my $rs ("\xff\xfe\xff\xfe" x 16, undef) {
+    local $/ = $rs;
+    # Decompression
+    for my $type (qw( plain banner )) {
 
-    ok (open (my $fz, "<:via(xz)", "files/$type.xz"), "Open $type");
-    is (scalar <$fz>, $txt{$type}, "$type decompression");
-    }
+	ok (open (my $fz, "<:via(xz)", "files/$type.xz"), "Open $type");
+	is (scalar <$fz>, $txt{$type}, "$type decompression");
+	}
 
-# Compression
-for my $type (qw( plain banner )) {
-    local $/ = "\xff\xfe\xff\xfe" x 16;
+    # Compression
+    for my $type (qw( plain banner )) {
+	my $fh;
+	ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
 
-    my $fh;
-    ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
+	ok ((print { $fh } $txt{$type}), "Write");
+	ok (close ($fh), "Close");
+	}
 
-    ok ((print { $fh } $txt{$type}), "Write");
-    ok (close ($fh), "Close");
-    }
+    # Roundtrip
+    for my $type (qw( plain banner )) {
+	my $fh;
+	ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
 
-# Roundtrip
-for my $type (qw( plain banner )) {
-    local $/ = "\xff\xfe\xff\xfe" x 16;
+	ok ((print { $fh } $txt{$type}), "Write");
+	ok (close ($fh), "Close");
 
-    my $fh;
-    ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
-
-    ok ((print { $fh } $txt{$type}), "Write");
-    ok (close ($fh), "Close");
-
-    ok (open ($fh, "<:via(xz)", $txz), "Open $type uncompress");
-    is (scalar <$fh>, $txt{$type}, "Compare");
+	ok (open ($fh, "<:via(xz)", $txz), "Open $type uncompress");
+	is (scalar <$fh>, $txt{$type}, "Compare");
+	}
     }
 
 done_testing;
