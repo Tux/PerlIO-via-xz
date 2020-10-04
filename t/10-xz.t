@@ -41,14 +41,17 @@ ok ( close ($fh),					"close file");
 ok (!open  ($fh, "+>:via(xz)", $txz),			"write+read is impossible");
 ok (!open  ($fh, ">>:via(xz)", $txz),			"append is not supported");
 
-foreach my $rs ("\xff\xfe\xff\xfe" x 16, undef) {
+foreach my $rs ("\xff\xfe\xff\xfe" x 16, "", undef, \40) {
     local $/ = $rs;
+
+    ref $rs and $txt{$_} = substr $txt{$_}, 0, 40 for qw( plain banner );
+
     # Decompression
     for my $type (qw( plain banner )) {
 
 	ok (open (my $fz, "<:via(xz)", "files/$type.xz"), "Open $type");
 	my $data = <$fz>;
-	if ($rs) {
+	if (defined $rs) {
 	    is ($data, $txt{$type}, "$type decompression");
 	    }
 	else { TODO:{ local $TODO = "local \$/ fails on decompress";
@@ -77,7 +80,7 @@ foreach my $rs ("\xff\xfe\xff\xfe" x 16, undef) {
 
 	ok (open ($fh, "<:via(xz)", $txz), "Open $type uncompress");
 	my $data = <$fh>;
-	if ($rs) {
+	if (defined $rs) {
 	    is ($data, $txt{$type}, "$type compare");
 	    }
 	else { TODO:{ local $TODO = "local \$/ fails on decompress";
