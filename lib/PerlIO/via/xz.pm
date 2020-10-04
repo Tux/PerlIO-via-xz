@@ -32,10 +32,9 @@ sub PUSHED {
     $mode =~ m/^[wr]$/ or return 1;
     my $self = {
         mode  => $mode,	# "r" or "w"
-	fh    => $fh,
+	fh    => undef,
         level => 9,		# Not yet settable
 	bsz   => 4096,		# Not yet settable
-	data  => undef,
 	xz    => undef,
 	};
     return bless $self => $class;
@@ -47,20 +46,20 @@ sub FILENO {
     $self->{fh}     = $fh;
     $self->{fileno} = fileno $fh;
     if ($self->{mode} eq "r") {
-	my $in  = $fh || \$self->{data};
+	my $in  = $fh;
 	$self->{xz} = IO::Uncompress::UnXz->new ($in,
-	    # BlockSize => $self->{bsz},
+	    BlockSize => $self->{bsz},
 	    ) or croak "Something went wrong in new (): $UnXzError";
 	}
     else {
-	my $out = $fh || \$self->{data};
+	my $out = $fh;
 	$self->{xz} = IO::Compress::Xz->new ($out,
 	    AutoClose => 1,
 	    Preset    => $self->{level},
 	    ) or croak "Something went wrong in new (): $XzError";
+	$self->{xz}->autoflush (1);
 	}
 #DDumper $self;
-    $self->{xz}->autoflush (1);
     $self->{fileno};
     } # FILENO
 
