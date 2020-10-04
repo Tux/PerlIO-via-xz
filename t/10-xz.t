@@ -41,10 +41,16 @@ ok ( close ($fh),					"close file");
 ok (!open  ($fh, "+>:via(xz)", $txz),			"write+read is impossible");
 ok (!open  ($fh, ">>:via(xz)", $txz),			"append is not supported");
 
-foreach my $rs ("\xff\xfe\xff\xfe" x 16, "", undef, \40) {
-    local $/ = $rs;
+for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
+     [ EMPTY  => ""				],
+     [ UNDEF  => undef				],
+     [ REF    => \40				],) {
 
-    ref $rs and $txt{$_} = substr $txt{$_}, 0, 40 for qw( plain banner );
+    my ($rst, $rs) = @$_;
+    local $/ = $rs;
+    $rst eq "REF" and $txt{$_} = substr $txt{$_}, 0, 40 for qw( plain banner );
+
+    diag ("Testing for RS $rst");
 
     # Decompression
     for my $type (qw( plain banner )) {
