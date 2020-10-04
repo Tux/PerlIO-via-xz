@@ -17,12 +17,6 @@ sub import {
 #DDumper { import => \@_ };
     } # import
 
-# open my $fh, "<:via(xz)", "file.xz";
-# =>
-# PUSHED ("PerlIO::via::xz", "r")
-# :
-# FLUSH ($self, *)
-
 # $class->PUSHED ([$mode, [$fh]])
 #   Should return an object or the class, or -1 on failure.  (Compare
 #   TIEHANDLE.)  The arguments are an optional mode string ("r", "w",
@@ -54,16 +48,16 @@ sub FILENO {
     $self->{fileno} = fileno $fh;
     if ($self->{mode} eq "r") {
 	my $in  = $fh || \$self->{data};
-	$self->{xz} = IO::Uncompress::UnXz->new ($in) or
-	#	BlockSize => $self->{bsz}
-		croak "Something went wrong in new (): $UnXzError";
+	$self->{xz} = IO::Uncompress::UnXz->new ($in,
+	    # BlockSize => $self->{bsz},
+	    ) or croak "Something went wrong in new (): $UnXzError";
 	}
     else {
 	my $out = $fh || \$self->{data};
 	$self->{xz} = IO::Compress::Xz->new ($out,
 	    AutoClose => 1,
-	    Preset    => $self->{level}) or
-		croak "Something went wrong in new (): $XzError";
+	    Preset    => $self->{level},
+	    ) or croak "Something went wrong in new (): $XzError";
 	}
 #DDumper $self;
     $self->{xz}->autoflush (1);
