@@ -61,7 +61,7 @@ configure_requires:
 test_requires:
     Test::More:           0
 test_recommends:
-    Test::More:           1.302181
+    Test::More:           1.302183
 resources:
     license:              http://dev.perl.org/licenses/
     homepage:             https://metacpan.org/pod/PerlIO::via::xz
