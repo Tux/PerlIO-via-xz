@@ -60,11 +60,11 @@ for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
 	if (defined $rs) {
 	    is ($data, $txt{$type}, "$type decompression");
 	    }
-	else { TODO:{ local $TODO = "local \$/ fails on decompress";
+	else {
 	    # Shorten the error message
 	    is (substr ($data, 0, 40), substr ($txt{$type}, 0, 40),
 		"$type decompression");
-	    }}
+	    }
 	}
 
     # Compression
@@ -89,11 +89,11 @@ for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
 	if (defined $rs) {
 	    is ($data, $txt{$type}, "$type compare");
 	    }
-	else { TODO:{ local $TODO = "local \$/ fails on decompress";
+	else {
 	    # Shorten the error message
 	    is (substr ($data, 0, 40), substr ($txt{$type}, 0, 40),
 		"$type compare");
-	    }}
+	    }
 	}
     }
 
