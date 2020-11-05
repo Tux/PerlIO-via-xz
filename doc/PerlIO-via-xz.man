@@ -43,4 +43,4 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
 
 
-perl v5.32.0                      2020-10-02                          STDIN(1)
+perl v5.32.0                      2020-11-05                          STDIN(1)
