@@ -31,9 +31,9 @@ sub PUSHED {
 #DDumper { PUSHED => \@_ };
     $mode =~ m/^[wr]$/ or return 1;
     my $self = {
-        mode  => $mode,	# "r" or "w"
+	mode  => $mode,		# "r" or "w"
 	fh    => undef,
-        level => 9,		# Not yet settable
+	level => 9,		# Not yet settable
 	bsz   => 4096,		# Not yet settable
 	xz    => undef,
 	};
@@ -43,24 +43,24 @@ sub PUSHED {
 sub FILENO {
     my ($self, $fh) = @_;
 #DDumper { FILENO => \@_ };
-    if ( ! defined $self->{xz}) {
-        $self->{fh}     = $fh;
-        $self->{fileno} = fileno $fh;
-        if ($self->{mode} eq "r") {
-        my $in  = $fh;
-        $self->{xz} = IO::Uncompress::UnXz->new ($in,
-            BlockSize => $self->{bsz},
-            ) or croak "Something went wrong in new (): $UnXzError";
-        }
-        else {
-        my $out = $fh;
-        $self->{xz} = IO::Compress::Xz->new ($out,
-            AutoClose => 1,
-            Preset    => $self->{level},
-            ) or croak "Something went wrong in new (): $XzError";
-        $self->{xz}->autoflush (1);
-        }
-    }
+    unless (defined $self->{xz}) {
+	$self->{fh}     = $fh;
+	$self->{fileno} = fileno $fh;
+	if ($self->{mode} eq "r") {
+	    my $in  = $fh;
+	    $self->{xz} = IO::Uncompress::UnXz->new ($in,
+		BlockSize => $self->{bsz},
+		) or croak "Something went wrong in new (): $UnXzError";
+	    }
+	else {
+	    my $out = $fh;
+	    $self->{xz} = IO::Compress::Xz->new ($out,
+		AutoClose => 1,
+		Preset    => $self->{level},
+		) or croak "Something went wrong in new (): $XzError";
+	    $self->{xz}->autoflush (1);
+	    }
+	}
 #DDumper $self;
     $self->{fileno};
     } # FILENO
@@ -130,10 +130,9 @@ sub FILL {
     my ($self, $fh) = @_;
 
 #DDumper { FILL => \@_ };
-
-	my $data = $self->{xz}->getline;
+    my $data = $self->{xz}->getline;
 #DDumper { data => $data };
-	return $data;
+    return $data;
     } # FILL
 
 # $obj->CLOSE ($fh)
