@@ -44,55 +44,54 @@ ok (!open  ($fh, ">>:via(xz)", $txz),			"append is not supported");
 for ([ MORMAL => "\xff\xfe\xff\xfe" x 16	],
      [ EMPTY  => ""				],
      [ UNDEF  => undef				],
+     [ REF_X  => \0x1ffffff			],
      [ REF    => \40				],) {
 
     my ($rst, $rs) = @$_;
     local $/ = $rs;
     $rst eq "REF" and $txt{$_} = substr $txt{$_}, 0, 40 for qw( plain banner );
 
-    ok (1, "Testing for RS $rst");
-
     # Decompression
     for my $type (qw( plain banner )) {
 
-	ok (open (my $fz, "<:via(xz)", "files/$type.xz"), "Open $type");
+	ok (open (my $fz, "<:via(xz)", "files/$type.xz"), "$rst:Open $type");
 	my $data = <$fz>;
 	if (defined $rs) {
-	    is ($data, $txt{$type}, "$type decompression");
+	    is ($data, $txt{$type}, "$rst:$type decompression");
 	    }
 	else {
 	    # Shorten the error message
 	    is (substr ($data, 0, 40), substr ($txt{$type}, 0, 40),
-		"$type decompression");
+		"$rst:$type decompression");
 	    }
 	}
 
     # Compression
     for my $type (qw( plain banner )) {
 	my $fh;
-	ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
+	ok (open ($fh, ">:via(xz)", $txz), "$rst:Open $type compress");
 
-	ok ((print { $fh } $txt{$type}), "Write");
-	ok (close ($fh), "Close");
+	ok ((print { $fh } $txt{$type}), "$rst:Write");
+	ok (close ($fh), "$rst:Close");
 	}
 
     # Roundtrip
     for my $type (qw( plain banner )) {
 	my $fh;
-	ok (open ($fh, ">:via(xz)", $txz), "Open $type compress");
+	ok (open ($fh, ">:via(xz)", $txz), "$rst:Open $type compress");
 
-	ok ((print { $fh } $txt{$type}), "Write");
-	ok (close ($fh), "Close");
+	ok ((print { $fh } $txt{$type}), "$rst:Write");
+	ok (close ($fh), "$rst:Close");
 
-	ok (open ($fh, "<:via(xz)", $txz), "Open $type uncompress");
+	ok (open ($fh, "<:via(xz)", $txz), "$rst:Open $type uncompress");
 	my $data = <$fh>;
 	if (defined $rs) {
-	    is ($data, $txt{$type}, "$type compare");
+	    is ($data, $txt{$type}, "$rst:$type compare");
 	    }
 	else {
 	    # Shorten the error message
 	    is (substr ($data, 0, 40), substr ($txt{$type}, 0, 40),
-		"$type compare");
+		"$rst:$type compare");
 	    }
 	}
     }
