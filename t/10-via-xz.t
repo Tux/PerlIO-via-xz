@@ -7,9 +7,15 @@ use Test::More;
 
 use File::Copy;
 
+eval {
+    require IO::Compress::Xz;
+    require IO::Uncompress::UnXz;
+    1;
+    } or do { ok (1, "Prereqs not met"); done_testing; exit 0; };
+
 use_ok ("PerlIO::via::xz");
 
-my $txz = "test.xz";	END { unlink $txz }
+my $txz = "test.xz";	END { $txz and unlink $txz }
 
 my %txt;
 my %xz;

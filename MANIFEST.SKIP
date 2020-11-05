@@ -6,9 +6,10 @@
 \.gcno$
 \.releaserc
 \.exrc$
-\.travis.yml
+\.travis\.yml
 \.whitesource
 ^00ideas
+^appveyor\.yml
 ^blib/
 ^cover_db/
 ^doc/
