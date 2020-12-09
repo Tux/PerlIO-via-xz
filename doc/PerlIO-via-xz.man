@@ -21,8 +21,6 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
        compressed files transparently.
 
 [1mBUGS[0m
-       Setting $/ to "undef" causes havoc. This is under investigation.
-
        Using "binmode" on an opened file for compression will pop (remove) the
        layer.
 
@@ -43,4 +41,4 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
 
 
-perl v5.32.0                      2020-11-05                          STDIN(1)
+perl v5.32.0                      2020-12-09                          STDIN(1)

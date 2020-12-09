@@ -21,8 +21,6 @@ xz compressed files transparently.
 
 # BUGS
 
-Setting `$/` to `undef` causes havoc. This is under investigation.
-
 Using `binmode` on an opened file for compression will pop (remove)
 the layer.
 
