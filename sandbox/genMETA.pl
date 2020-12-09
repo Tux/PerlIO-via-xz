@@ -54,8 +54,6 @@ requires:
     PerlIO:               0
     IO::Compress::Xz:     2.096
     IO::Uncompress::UnXz: 2.096
-recommends:
-    Encode:               3.07
 configure_requires:
     ExtUtils::MakeMaker:  0
 test_requires:
