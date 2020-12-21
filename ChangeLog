@@ -1,5 +1,6 @@
-0.03	- 09 Dec 2020, H.Merijn Brand
+0.03	- 21 Dec 2020, H.Merijn Brand
     * Remove bug warning in docs for fixed bug
+    * Fix META issue for bugtracker
 
 0.02	- 05 Nov 2020, H.Merijn Brand
     * Fix $/ = undef (issue #1, Thank you Paul Marquess)
