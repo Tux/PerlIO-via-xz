@@ -52,8 +52,8 @@ requires:
     perl:                 5.012000
     Carp:                 0
     PerlIO:               0
-    IO::Compress::Xz:     2.096
-    IO::Uncompress::UnXz: 2.096
+    IO::Compress::Xz:     2.100
+    IO::Uncompress::UnXz: 2.100
 configure_requires:
     ExtUtils::MakeMaker:  0
 test_requires:

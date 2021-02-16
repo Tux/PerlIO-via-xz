@@ -1,6 +1,6 @@
 requires   "Carp";
-requires   "IO::Compress::Xz"         => "2.096";
-requires   "IO::Uncompress::UnXz"     => "2.096";
+requires   "IO::Compress::Xz"         => "2.100";
+requires   "IO::Uncompress::UnXz"     => "2.100";
 requires   "PerlIO";
 
 on "configure" => sub {
