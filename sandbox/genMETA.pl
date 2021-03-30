@@ -58,6 +58,9 @@ configure_requires:
     ExtUtils::MakeMaker:  0
 test_requires:
     Test::More:           0
+recommends:
+    IO::Compress::Xz:     2.101
+    IO::Uncompress::UnXz: 2.101
 test_recommends:
     Test::More:           1.302183
 resources:
