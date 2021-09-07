@@ -28,15 +28,15 @@
 
 <h1 id="SYNOPSIS">SYNOPSIS</h1>
 
-<pre><code>    use PerlIO::via::XZ;
+<pre><code>use PerlIO::via::XZ;
 
-    # Read a xz compressed file from disk.
-    open my $fh, &quot;&lt;:via(xz)&quot;, &quot;compressed_file&quot;;
-    my $uncompressed_data = &lt;$fh&gt;;
+# Read a xz compressed file from disk.
+open my $fh, &quot;&lt;:via(xz)&quot;, &quot;compressed_file&quot;;
+my $uncompressed_data = &lt;$fh&gt;;
 
-    # Compress data on-the-fly to a xz compressed file on disk.
-    open my $fh, &quot;&gt;:via(xz)&quot;, &quot;compressed_file&quot;;
-    print { $fh } $uncompressed_data;</code></pre>
+# Compress data on-the-fly to a xz compressed file on disk.
+open my $fh, &quot;&gt;:via(xz)&quot;, &quot;compressed_file&quot;;
+print { $fh } $uncompressed_data;</code></pre>
 
 <h1 id="DESCRIPTION">DESCRIPTION</h1>
 
