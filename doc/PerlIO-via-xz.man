@@ -34,11 +34,11 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
        H.Merijn Brand <hmbrand@cpan.org>
 
 [1mCOPYRIGHT AND LICENSE[0m
-       Copyright (C) 2021 by H.Merijn Brand
+       Copyright (C) 2020-2022 by H.Merijn Brand
 
        This library is free software; you can redistribute it and/or modify it
        under the same terms as Perl itself.
 
 
 
-perl v5.34.0                      2021-09-07                          STDIN(1)
+perl v5.34.0                      2022-01-01                          STDIN(1)
