@@ -9,7 +9,7 @@ use IO::Uncompress::UnXz qw( $UnXzError );
 #use Data::Peek;
 use Carp;
 
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 sub import {
     my ($class, %args) = @_;
