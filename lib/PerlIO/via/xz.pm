@@ -230,7 +230,7 @@ H.Merijn Brand E<lt>hmbrand@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2020-2022 by H.Merijn Brand
+Copyright (C) 2020-2023 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
