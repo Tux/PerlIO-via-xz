@@ -56,13 +56,17 @@ requires:
     IO::Uncompress::UnXz: 2.100
 configure_requires:
     ExtUtils::MakeMaker:  0
+configure_recommends:
+    ExtUtils::MakeMaker:  7.22
+configure_suggests:
+    ExtUtils::MakeMaker:  7.70
 test_requires:
     Test::More:           0
 recommends:
-    IO::Compress::Xz:     2.201
-    IO::Uncompress::UnXz: 2.201
+    IO::Compress::Xz:     2.204
+    IO::Uncompress::UnXz: 2.204
 test_recommends:
-    Test::More:           1.302191
+    Test::More:           1.302195
 resources:
     license:              http://dev.perl.org/licenses/
     homepage:             https://metacpan.org/pod/PerlIO::via::xz
