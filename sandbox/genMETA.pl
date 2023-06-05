@@ -70,8 +70,8 @@ test_recommends:
 resources:
     license:              http://dev.perl.org/licenses/
     homepage:             https://metacpan.org/pod/PerlIO::via::xz
-    repository:           https://github.com/Tux/PerlIO-via-xs
-    bugtracker:           https://github.com/Tux/PerlIO-via-xs/issues
+    repository:           https://github.com/Tux/PerlIO-via-xz
+    bugtracker:           https://github.com/Tux/PerlIO-via-xz/issues
     IRC:                  irc://irc.perl.org/#csv
 meta-spec:
     version:              1.4
