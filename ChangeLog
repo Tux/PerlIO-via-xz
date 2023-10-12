@@ -1,3 +1,6 @@
+0.07	- 12 Oct 2023, H.Merijn Brand
+    * Doc changes for groff-1.24
+
 0.06	- 05 Jun 2023, H.Merijn Brand
     * Refine requirements based on known CVE's
     * Fix repo & bugtracker URLs in META
