@@ -63,8 +63,8 @@ configure_suggests:
 test_requires:
     Test::More:           0
 recommends:
-    IO::Compress::Xz:     2.204
-    IO::Uncompress::UnXz: 2.204
+    IO::Compress::Xz:     2.206
+    IO::Uncompress::UnXz: 2.206
 test_recommends:
     Test::More:           1.302195
 resources:
