@@ -66,7 +66,7 @@ recommends:
     IO::Compress::Xz:     2.206
     IO::Uncompress::UnXz: 2.206
 test_recommends:
-    Test::More:           1.302195
+    Test::More:           1.302198
 resources:
     license:              http://dev.perl.org/licenses/
     homepage:             https://metacpan.org/pod/PerlIO::via::xz
