@@ -3,8 +3,8 @@ requires   "IO::Compress::Xz"         => "2.100";
 requires   "IO::Uncompress::UnXz"     => "2.100";
 requires   "PerlIO";
 
-recommends "IO::Compress::Xz"         => "2.206";
-recommends "IO::Uncompress::UnXz"     => "2.206";
+recommends "IO::Compress::Xz"         => "2.212";
+recommends "IO::Uncompress::UnXz"     => "2.212";
 
 on "configure" => sub {
     requires   "ExtUtils::MakeMaker";
@@ -17,5 +17,5 @@ on "configure" => sub {
 on "test" => sub {
     requires   "Test::More";
 
-    recommends "Test::More"               => "1.302198";
+    recommends "Test::More"               => "1.302199";
     };
